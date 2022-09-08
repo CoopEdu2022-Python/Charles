@@ -2,4 +2,3 @@
 a = "A000001"
 stock_rep = a
 print(stock_rep)
-
