@@ -82,13 +82,18 @@ player = int(input("Enter stone(1), paper(2), scissor(3): "))
 import random
 
 computer = random.randint(1, 3)
-print("The choice from the computer: ", computer)
 if ((player == 1 and computer == 3) or
         (player == 2 and computer == 1) or
         (player == 3 and computer == 2)):
+    print("The choice from the computer: ", computer)
     print("噢耶！！！电脑弱爆了！！！")
+elif player > 3 or player < 1:
+    print("请输入一个1~3之间的数字！！！")
 elif player == computer:
+    print("The choice from the computer: ", computer)
     print("心有灵犀，再来一盘！")
 else:
+    print("The choice from the computer: ", computer)
     print("不行，我要和你决战到天亮！")
 # 这个还挺好玩的，就这了我觉得差不多了
+
