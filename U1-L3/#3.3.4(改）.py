@@ -1,5 +1,5 @@
 # 3.3.4 用户输入 1 个整数，打印出这个整数的所有因数。打印后程序持续运行，而非结束
-
-
-
-我他妈这辈子都不想再看到因数这个傻逼玩意了
+num = int(input("Enter a number: "))
+for i in range(1, num + 1):
+    if num % i == 0:
+        print(i)

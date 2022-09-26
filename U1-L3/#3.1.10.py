@@ -30,4 +30,3 @@ while n > 1:
             else:
                 print("{} *".format(i), end=' ')
             break
-
