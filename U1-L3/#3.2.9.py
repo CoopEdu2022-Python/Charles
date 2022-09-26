@@ -2,11 +2,8 @@
 a = int(input("Please enter a number: "))
 for i in range(2, a + 1):
     b = a % i
-    if a == 2:
-        print("This number is both prime number and sum number")
-        break
     if b == 0:
-        print("This is a sum number")
+        print("This is a composite number")
         break
     else:
         print("This number is a prime number")

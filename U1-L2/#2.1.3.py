@@ -4,9 +4,9 @@
 # 如果外星人是黄色的，就打印一条消息，指出玩家获得了 15 个 points
 # 编写这个程序的三个版本，它们分别在外星人为红色、绿色和黄色时打印一条消息
 alien_color = int(input("Enter the color of the alien(Green(1),Yellow(2), Red(3): "))
-if alien_color == 1:
+if alien_color == 3:
     print("Five points gained")
-elif alien_color == 2:
+elif alien_color == 1:
     print("Ten points gained")
-elif alien_color == 3:
+elif alien_color == 2:
     print("Fifteen points gained")
