@@ -6,5 +6,5 @@ for i in range(0, 12):
     print("平年 %d 月有 %d 天" % (i + 1, common_year[i]))
 print()
 for i in range(0, 12):
-    print("润年 %d 月有 %d 天" % (i + 1, leap_year[i]))
+    print("闰年 %d 月有 %d 天" % (i + 1, leap_year[i]))
 
