@@ -34,6 +34,5 @@ for i in range(3):
             j += 1
 
         break
-    if b == 3:
-        print("Access denied")
-        break
+    else:
+        print("Access granted")

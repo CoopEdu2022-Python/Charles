@@ -23,8 +23,7 @@ print(dict)
 dict.pop('c')
 print(dict)
 
-temp_dict = {'php': 90}
-dict.update(temp_dict)
+dict['php'] = 90
 print(dict)
 
 key_list = []
@@ -49,6 +48,5 @@ print(value_list[0])
 
 print(value_list[2])
 
-dic1 = {'php': 97}
-dict.update(dic1)
+dict['php'] = 97
 print(dict)
