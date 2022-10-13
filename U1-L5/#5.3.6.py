@@ -3,8 +3,8 @@
 def compare_dict(dict1, dict2):
     same_item_list = []
     i = 0
-    for item1 in dict1.item():
-        for item2 in dict2.item():
+    for item1 in dict1.items():
+        for item2 in dict2.items():
             if item1 == item2:
                 i += 1
                 if item2 not in same_item_list:
@@ -13,4 +13,4 @@ def compare_dict(dict1, dict2):
                 same_item_list[i] = i
     same_item_tuple = tuple(same_item_list)
     return same_item_tuple
-# 我这段代码有一个问题可能没办法解决的就是两个字典如果不一样长该怎么办，这个我没太想清楚
+

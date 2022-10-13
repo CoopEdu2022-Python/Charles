@@ -7,5 +7,5 @@ for key in dict:
     print(key)
 for value in dict.values():
     print(value)
-for items in dict:
-    print(dict)
+for items in dict.items():
+    print(items)
