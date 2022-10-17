@@ -2,10 +2,17 @@
 # 例如，参数为 'They are students.' 和 'aeiou'，返回 'Thy r stdnts.'
 def strip(a, b):
     a, b = str(a), str(b)
-    b = " ".join(b)
-    for i in b.split():
+    for i in b:
         a = a.replace(i, "")
     return a
 
 
 print(strip('They are students.', 'aeiou'))
+
+
+# translate 和 maketrans 的用法
+def del_str(str_original, str_to_remove):
+    return str_original.translate(str.maketrans("", "", str_to_remove))
+
+
+print(del_str("They are students.", "aeiou"))

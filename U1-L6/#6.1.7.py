@@ -7,4 +7,10 @@ def link(s, l):
     return s.join(i)
 
 
+# 更快的方法
+def link1(sep, strs):
+    return sep.join(strs)
+
+
 print(link("123", ['a', 'b', 'c']))
+print(link1("123", ['a', 'b', 'c']))

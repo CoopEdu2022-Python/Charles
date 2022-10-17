@@ -84,8 +84,10 @@ def changing_game_mode():
         place[a - 1] = "x"
         plate()
         if len(player1_list) > 3:
-            place[player1_list[0]] = player1_list[0]
+            place[player1_list[0] - 1] = player1_list[0]
             player1_list.pop(0)
+            os.system("cls")
+            plate()
             if verdict() == 1:
                 print("The winner is player1 !")
                 break
@@ -95,14 +97,17 @@ def changing_game_mode():
         place[b - 1] = "o"
         plate()
         if len(player2_list) > 3:
-            place[player2_list[0]] = player2_list[0]
+            place[player2_list[0] - 1] = player2_list[0]
             player2_list.pop(0)
+            os.system("cls")
+            plate()
             if verdict() == 2:
                 print("The winner is player2 !")
                 break
 
 
-Choice = input("Press 1 if you want to play the basic game mode, press 2 if you want to play the changing game mode:")
+Choice = input("Press 1 if you want to play the basic game mode, \n"
+               "press 2 if you want to play the changing game mode:")
 if Choice == "1":
     basic_game_mode()
 elif Choice == "2":
