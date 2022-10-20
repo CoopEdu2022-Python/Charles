@@ -1,21 +1,119 @@
 # 1. 用多行注释的方式，写出 Python 目前所有的内置函数
 """
 内置函数
-abs()	        delattr()	    hash()	        memoryview()	set()
-all()	        dict()	        help()	        min()	        setattr()
-any()	        dir()	        hex()	        next()	        slice()
-ascii()	        divmod()	    id()	        object()	    sorted()
-bin()	        enumerate()	    input()	        oct()	        staticmethod()
-bool()	        eval()	        int()	        open()	        str()
-breakpoint()	exec()	        isinstance()	ord()	        sum()
-bytearray()	    filter()	    issubclass()	pow()	        super()
-bytes()	        float()	        iter()	        print()	        tuple()
-callable()	    format()	    len()	        property()	    type()
-chr()	        frozenset()	    list()	        range()	        vars()
-classmethod()	getattr()	    locals()	    repr()	        zip()
-compile()	    globals()	    map()	        reversed()	    __import__()
-complex()	    hasattr()	    max()	        round()
 
+A
+abs()
+aiter()
+all()
+any()
+anext()
+ascii()
+
+B
+bin()
+bool()
+breakpoint()
+bytearray()
+bytes()
+
+C
+callable()
+chr()
+classmethod()
+compile()
+complex()
+
+D
+delattr()
+dict()
+dir()
+divmod()
+
+E
+enumerate()
+eval()
+exec()
+
+F
+filter()
+float()
+format()
+frozenset()
+
+G
+getattr()
+globals()
+
+H
+hasattr()
+hash()
+help()
+hex()
+
+I
+id()
+input()
+int()
+isinstance()
+issubclass()
+iter()
+L
+len()
+list()
+locals()
+
+M
+map()
+max()
+memoryview()
+min()
+
+N
+next()
+
+O
+object()
+oct()
+open()
+ord()
+
+P
+pow()
+print()
+property()
+
+
+
+
+R
+range()
+repr()
+reversed()
+round()
+
+S
+set()
+setattr()
+slice()
+sorted()
+staticmethod()
+str()
+sum()
+super()
+
+T
+tuple()
+type()
+
+V
+vars()
+
+Z
+zip()
+
+_
+__import__()
 """
 
 
