@@ -1,3 +1,11 @@
-str1='this is uesd to test substring'
-# 1.取某个位置到某个位置的值从中间开始，中间结束
-print("从str1中取第四个到第五个字符, 结果: ", str1[3:5])
+import os
+import time
+
+while True:
+      print(11111111)
+      time.sleep(0.5)
+      os.system("cls")
+
+      print(22222222)
+      time.sleep(0.5)
+      os.system("cls")
