@@ -7,22 +7,23 @@
 # - 方法：get_info()，打印用户的所有信息
 
 class User:
-    def __init__(self, credits, id="123", nicname="hello"):
+    def __init__(self, credits, id="123", nickname="hello"):
         self.id = id
-        self.nicname = nicname
+        self.nickname = nickname
         self.credits = credits
-        print("%s, %s, %d" % (self.id, self.nicname, self.credits))
 
     def get_info(self):
-        return self
+        return "%s, %s, %d" % (self.id, self.nickname, self.credits)
 
 
 class Vip(User):
-    def vip_level(self, level=1):
-        self.vip_level()
+    def __init__(self, level=1):
+        super().__init__()
+        self.vip_level = level
+
+    def get_info(self):
+        return "%s, %s, %d, %d" % (self.id, self.nickname, self.credits, self.vip_level)
 
 
 user1 = User(6666)
 print(user1.get_info())
-
-# 写不出来了

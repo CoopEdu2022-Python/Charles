@@ -4,15 +4,16 @@
 # Segment 类包含 get_len() 方法，可以获得直线的长度
 class Point:
     def __init__(self, x, y):
-        self.horizontal = x
-        self.vertical = y
+        self.x = x
+        self.y = y
 
 
 class Segment:
     def __init__(self, x1, y1, x2, y2):
-        self.__left_point = (x1, y1)
-        self.__right_point = (x2, y2)
-        self.segment_length = (((x1 - x2) ** 2) + ((y1 - y2) ** 2)) ** (1/2)
+        self.__left_point = Point(x1, y1)
+        self.__right_point = Point(x2, y2)
+        self.segment_length = (((self.__left_point.x - self.__right_point.x) ** 2) +
+                               ((self.__left_point.y - self.__right_point.y) ** 2)) ** (1/2)
 
     def get_len(self):
         return self.segment_length

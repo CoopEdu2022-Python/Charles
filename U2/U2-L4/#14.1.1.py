@@ -8,9 +8,6 @@ class People:
 
 
 class Infant(People):
-    def del_method(self):
-        del Infant.talk()
-
-# 想不通了
-
+    def talk(self):
+        pass
 
