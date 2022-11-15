@@ -64,15 +64,14 @@ eaten_fish = []
 while big_fish.hp > 0 and small_fishes != []:
     big_fish.move()
     big_fish.hp -= 1
-    for i, small_fish in enumerate(small_fishes):
+    for small_fish in small_fishes:
         small_fish.move()
         if (big_fish.x, big_fish.y) == (small_fish.x, small_fish.y):
             big_fish.eat()
-            eaten_fish.append(i)
+            eaten_fish.append(small_fish)
     print("Big fish HP: %d" % (big_fish.hp))
-    print(len(eaten_fish))
     for fish in eaten_fish:
-        small_fishes.pop(fish)
+        small_fishes.remove(fish)
     eaten_fish = []
     print("Theres only %d fishes left." % (len(small_fishes)))
 if big_fish.hp <= 0:
