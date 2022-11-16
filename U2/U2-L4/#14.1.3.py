@@ -12,10 +12,9 @@ class Segment:
     def __init__(self, x1, y1, x2, y2):
         self.__left_point = Point(x1, y1)
         self.__right_point = Point(x2, y2)
-        self.segment_length = (((self.__left_point.x - self.__right_point.x) ** 2) +
-                               ((self.__left_point.y - self.__right_point.y) ** 2)) ** (1/2)
 
-    def get_len(self):
-        return self.segment_length
+    def get_len(self, x1, x2, y1, y2):
+        x1, x2 = self.__left_point.x, self.__right_point.x
+        y1, y2 = self.__left_point.y, self.__right_point.y
+        return (((x1 - x2) ** 2) + ((y1 - y2) ** 2)) ** (1/2)
 
-# 我知道我这样写可能让point类segment类没关系了，但是我也不知道怎么把他们俩关联起来。

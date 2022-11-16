@@ -1,11 +1,14 @@
-def matrix_diagonal_sum(matrix: List[List[int]]) -> int:
-    """
+def matrix_diagonal_sum(matrix: list[list[int]]) -> int:
+    result = 0
+    reverse_matrix = []
+    for i, list in enumerate(matrix):
+        result += list[i]
+        reverse_matrix.append(sorted(list, reverse=True))
+    for i, list in enumerate(reverse_matrix):
+        if 2 * i + 1 == len(reverse_matrix):
+            continue
+        result += list[i]
+    return result
 
-    :param matrix:
-    :return:
-    """
 
-    """
-    我靠上面这个是啥情况，我想在里面打多行注释结果一回车就这样了
-    您也不回我消息，我这个题明天再说吧，今天我把前面的都给补了--2022/11/15
-    """
+print(matrix_diagonal_sum([[5]]))

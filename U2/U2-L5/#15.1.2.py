@@ -78,6 +78,3 @@ if big_fish.hp <= 0:
     print("Small fish won")
 else:
     print("Big fish won")
-"""
-em 这个代码可能会有bug，但是我真的不知道那个该怎么debug了
-"""
