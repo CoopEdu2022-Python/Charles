@@ -2,9 +2,6 @@ import random
 
 
 class Dealer:
-    def __init__(self):
-        self.number = 0
-
     def set_number(self):
         self.number = random.randint(0, 100)
         return self.number
@@ -20,6 +17,7 @@ class Dealer:
             print("猜对了")
             return 0
 
+
     def award(self, rounds):
         return 10 - (rounds - 1)
 
@@ -32,31 +30,35 @@ class Player:
         return random.randint(n1, n2)
 
 
+class Rule:
+    def __init__(self):
+        self.rounds = 0
+
+    def judge(self, player, dealer):
+        player.points += dealer.award(self.rounds)
+
+
 dealer = Dealer()
 player = Player()
+judger = Rule()
 
 
-def game(player, dealer):
+def game(player, dealer, judger):
     a = dealer.set_number()
     print(a)
-    rounds = 0
     n1 = 0
     n2 = 100
     guess_number = player.guess_number(n1, n2)
-    while True:
-        rounds += 1
+    while player.guess_number(n1, n2) != a:
         judge = dealer.hint(guess_number)
         if judge == 1:
             n2 = guess_number - 1
         elif judge == -1:
             n1 = guess_number + 1
-        else:
-            break
-        guess_number = player.guess_number(n1, n2)
-
-    player.points += dealer.award(rounds)
-    print("游戏结束, 玩家经历了 %d 轮猜数字， 获得了 %d 分。" % (rounds, player.points))
+        judger.rounds += 1
+    judger.judge(player, dealer)
+    print("游戏结束。玩家经历了 %d 轮猜数字， 获得了 %d 分。" % (judger.rounds, player.points))
     return player.points
 
 
-game(player, dealer)
+game(player, dealer, judger)

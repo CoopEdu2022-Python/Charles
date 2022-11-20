@@ -25,10 +25,11 @@ class Player:
         return random.randint(0, 100)
 
 
-def game():
-    dealer = Dealer()
-    player = Player()
-    set_number = dealer.set_number()
+dealer = Dealer()
+player = Player()
+
+
+def game(player, dealer):
     rounds = 0
     while player.guess_number() != dealer.set_number():
         dealer.hint(player.guess_number())
@@ -39,6 +40,6 @@ def game():
 
 
 while 1:
-    if game() < -10:
+    if game(player, dealer) < -10:
         print("游戏结束")
         break
