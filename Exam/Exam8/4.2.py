@@ -28,34 +28,56 @@ class Fraud:
 
 def game(player, computer, fraud):
     a = player.punch()
-    print(a)
+    print("player:", a)
     b = computer.punch()
-    print(b)
-    if a == "stone" and b == "scissor" or a == "scissor" and b == "paper" or a == "paper" and b == "stone":
-        if player.challenge() == "yes":
+    print("computer:", b)
+    if (a == "stone" and b == "scissor") or (a == "scissor" and b == "paper") or (a == "paper" and b == "stone"):
+        challenge = player.challenge()
+        print(challenge)
+        if challenge == "yes":
             player.points += 2
             return "player wins"
         else:
-            if fraud.lie() == "lose":
-                computer += 1
+            lies = fraud.lie()
+            print(lies)
+            if lies == "lose":
+                computer.points += 1
                 return "computer wins"
             else:
                 return "Tie"
-    elif a == "stone" and b == "paper" or a == "scissor" and b == "stone" or a == "paper" and b == "scissor":
-        if player.challenge() == "yes":
+    elif (a == "stone" and b == "paper") or (a == "scissor" and b == "stone") or (a == "paper" and b == "scissor"):
+        challenge = player.challenge()
+        print(challenge)
+        if challenge == "yes":
             computer.points += 2
             return "computer wins"
         else:
-            if fraud.lie() == "lose":
-                computer += 1
-                return "player wins"
+            lies = fraud.lie()
+            print(lies)
+            if lies == "lose":
+                computer.points += 1
+                return "computer wins"
             else:
                 return "Tie"
     else:
-        return "Tie"
+        challenge = player.challenge()
+        print(challenge)
+        if challenge == "yes":
+            return "Tie"
+        else:
+            lies = fraud.lie()
+            print(lies)
+            if lies == "lose":
+                computer.points += 1
+                return "computer wins"
+            else:
+                return "Tie"
 
 
 player = Player()
 computer = Computer()
 fraud = Fraud()
 print(game(player, computer, fraud))
+print(player.points)
+print(computer.points)
+
