@@ -13,7 +13,7 @@ class Apple(Fruit):
         Apple.nums += 1
 
     def __del__(self):
-        Apple.nums = 0
+        Apple.nums -= 1
 
 
 class Orange(Fruit):
@@ -24,7 +24,7 @@ class Orange(Fruit):
         Orange.nums += 1
 
     def __del__(self):
-        Orange.nums = 0
+        Orange.nums -= 1
 
 
 class Banana(Fruit):
@@ -35,7 +35,7 @@ class Banana(Fruit):
         Banana.nums += 1
 
     def __del__(self):
-        Banana.nums = 0
+        Banana.nums -= 1
 
 
 class Pear(Fruit):
@@ -46,7 +46,7 @@ class Pear(Fruit):
         Pear.nums += 1
 
     def __del__(self):
-        Pear.nums = 0
+        Pear.nums -= 1
 
 
 class Peach(Fruit):
@@ -57,6 +57,6 @@ class Peach(Fruit):
         Peach.nums += 1
 
     def __del__(self):
-        Peach.nums = 0
+        Peach.nums -= 1
 
 
