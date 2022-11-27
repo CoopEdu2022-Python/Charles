@@ -5,17 +5,18 @@
 """
 # 2. 异常有哪些类型？（如何找到全部的异常类型？)
 """
-好多好多的异常类型
+for name in dir(__builtins__):
+    print(name)
 """
 
 # 3. 如何捕获异常？
 try:
     num = int(input("Input an integer: "))
     result = 1 / num
-# except ZeroDivisionError:
-#     print("除0错误")
-# except ValueError:
-#     print("数据类型输入错误")
+except ZeroDivisionError:
+    print("除0错误")
+except ValueError:
+    print("数据类型输入错误")
 except Exception as result:
     print("Unknown error %s" % result)
 else:
