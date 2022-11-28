@@ -1,13 +1,11 @@
 def fill_cups(amount: list[int]) -> int:
     count = 0
+    amount.sort(reverse=True)
     while 1:
-        amount.sort(reverse=True)
         amount[0] -= 1
         amount[1] -= 1
-        for i, items in enumerate(amount):
-            if items == 0:
-                amount.pop(i)
-        if len(amount) == 1:
+        amount.sort(reverse=True)
+        if amount[1] == 0:
             count += amount[0] + 1
             break
         count += 1
@@ -16,4 +14,4 @@ def fill_cups(amount: list[int]) -> int:
 
 print(fill_cups([1,4,2]))
 print(fill_cups([5,4,4]))
-
+print(fill_cups([5,0,0]))
