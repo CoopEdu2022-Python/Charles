@@ -1,0 +1,33 @@
+20.1.2  Python 依赖管理  [50pts]
+通过搜索引擎了解以下问题：
+1. Python 依赖是什么？
+    class Cat():      # 定义一个猫类
+        def __init__(self, color, age):
+            self.color = color
+            self.age = age
+
+        def eat(self, obj):    # 猫的一个吃的方法
+            obj.eat()
+
+
+    class Mouth():     # 定义一个嘴类
+        def eat(self):     # 嘴也会吃东西
+            print("I was eating")
+
+    mouth = Mouth()    # 一个嘴叫mouth
+    cat = Cat("blue", 2)    #一个猫叫cat
+    cat.eat(mouth)    # 猫开始吃东西
+
+    当小猫想吃东西时，就要借助嘴巴的eat()功能去实现小猫想吃东西的梦想，于是嘴巴就满足它这卑微的梦想。
+    也就是把嘴巴mouth 这个对象当作参数传入到小猫的eat()方法中，再在小猫的eat()方法中去调用嘴巴的eat()方法，
+    从而就实现了小猫的梦想。
+    这就是“依赖”。
+
+2. Python 的依赖管理存在哪些问题？
+    我觉得要不还是听您上课讲好了hhhh
+    
+3. Dependency hell 是什么？
+
+4. 为什么会出现这些问题？
+5. Python 是如何解决这些问题的？
+6. 是否有第三方工具解决了这些问题？
