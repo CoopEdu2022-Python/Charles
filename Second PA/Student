@@ -1,0 +1,2 @@
+stu_id | password | name | gender | age | grade | selected_course | credit requirement
+s_007 | 12345678 | Ronaldo | male | 17 | 11 | [] | xx/xx
