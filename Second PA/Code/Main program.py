@@ -32,6 +32,8 @@ def enter_system(id_number: str, password: str):
 #                 v_password = items[6:]
 #                 break
 
+
+# login
 print("Hi welcome to the course selection system, you may enter your id and your password to log in")
 while 1:
     id_number = input("Please enter your personal id to log in: ")
@@ -41,6 +43,8 @@ while 1:
         break
     else:
         print(temp)
+
+
 if temp == "a":
     from Controller import Admin
     admin = Admin(id_number, password)
@@ -55,6 +59,7 @@ if temp == "a":
               "7: check_course_info\n"
               "-1: if you want to exit the system just press -1")
         action = int(input("Enter a number for what you want to do: "))
+
         if action == 1:
             stu_id = input("input stu id with format(s_xxx): ")
             admin.create_stu_account(stu_id)

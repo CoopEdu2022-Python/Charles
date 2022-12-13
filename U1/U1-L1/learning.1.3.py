@@ -44,7 +44,7 @@ print("My name is %s, please take care!" % name)
 
 # 定义整数变量 student_no，输出 我的学号是 000001
 stu_no = 1
-print("My stu ID is %06d." % stu_no)
+print("My Student ID is %06d." % stu_no)
 
 # 定义小数 price、weight、money，输出 苹果单价 9.00 元／斤，购买了 5.00 斤，需要支付 45.00 元
 price = 9

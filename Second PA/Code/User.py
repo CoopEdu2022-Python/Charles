@@ -18,8 +18,7 @@ class Teacher:
 class Student:
     num = 0
 
-    def __init__(self, name: str, gender: str, age: str, grade: str,
-                 password: str, selected_course: list):
+    def __init__(self, name: str, gender: str, age: str, grade: str, password: str, selected_course: list):
         self.name = name
         self.gender = gender
         self.age = age

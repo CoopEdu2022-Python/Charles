@@ -1,3 +1,2 @@
-a = "abcde"
-a.lower()
-print(a[-1:-2:-1])
+with open("hi", "r+") as f:
+    pass
