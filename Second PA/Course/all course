@@ -1,2 +1,3 @@
-Math
-Python
+name | class_number | current_stu | stu_max | teacher | credit | category | students
+Math5002 | 002 | 00 | 20 | Sybil | 6 | required | []
+python | 001 | 04 | 07 | Kros | 09 | optional | [Charles, Jerry]

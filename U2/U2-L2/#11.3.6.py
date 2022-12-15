@@ -5,7 +5,7 @@ class Student:
         self.course = course
 
     def __del__(self):
-        print("Student has been deleted")
+        print("format has been deleted")
 
     def add_course(self):
         self.course.append("class code")

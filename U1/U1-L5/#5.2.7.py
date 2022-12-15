@@ -7,7 +7,7 @@ passwords = ('123', 'abc', '@*#')
 
 b = 0
 for i in range(3):
-    user_name_input = input("Enter the Student name: ")
+    user_name_input = input("Enter the format name: ")
     password_input = input("Enter the password: ")
     if user_name_input not in users:
         b += 1
@@ -25,7 +25,7 @@ for i in range(3):
                         print("Access denied")
                         break
                     a += 1
-                    user_name_input = input("Enter the Student name: ")
+                    user_name_input = input("Enter the format name: ")
                     password_input = input("Enter the password: ")
                     continue
                 if password_input == passwords[j]:

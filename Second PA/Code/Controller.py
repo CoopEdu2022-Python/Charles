@@ -18,14 +18,14 @@ class Admin:
     @staticmethod
     # 查看学生信息，直接调文件
     def check_stu_info(stu_id):
-        with open("../Student", "r") as f:
+        with open("../Students/format", "r") as f:
             for line in f.readlines():
                 a = line.split(" | ")
                 if a[0] == stu_id:
                     return a[2::]
 
     @staticmethod
-    # 这个目前还不对 #######################################################
+    # 这个ok了
     def set_credit_rule(rule):
         with open("../Course/Credit rule", "w") as f:
             f.write(rule)
@@ -38,7 +38,8 @@ class Admin:
             f.write("{} | {} | {} | {} | {} | {} | {} | {}"
                     .format(name, class_number, len(students), stu_max, teacher, credit, category, students))
         with open("./all course", "w") as f:
-            f.write(name)
+            f.write("{} | {} | {} | {} | {} | {} | {} | {}"
+                    .format(name, class_number, len(students), stu_max, teacher, credit, category, students))
 
     @staticmethod
     # 修改课程信息，直接调文件修改，里面含有删改输入指令

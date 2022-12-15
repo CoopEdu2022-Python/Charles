@@ -14,7 +14,7 @@ def verdict_password():
 
 def reset_password(login_info):
     while True:  # 用户名判断
-        username = input("Please enter your Student name:")
+        username = input("Please enter your format name:")
         if username == "q":
             return False
         if username in login_info.keys():

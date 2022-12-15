@@ -18,6 +18,7 @@ def enter_system(id_number: str, password: str):
             return "access denied(you can try again if you want hhhh)"
 
 
+
 # def iterate_password():
 #     global __account_number
 #     old_password = input("Enter your original password: ")
@@ -99,13 +100,17 @@ if temp == "t":
     # not important, I don't want you to do anything
 if temp == "s":
     from User import Student
-    import Course
-    name = input("enter your name")
-    gender = input("enter your gender")
-    age = input("enter your age")
-    grade = input("enter your grade")
-    selected_course = []
-    student = Student(name, gender, age, grade, password, selected_course)
+    from Course import Course
+
+    with open("../Students/%s" % id_number, "r") as f:
+        a = f.readline()
+        a.split(" | ")
+        for items in a:
+            if items[0] == id_number:
+                user = items
+
+    student = Student(user[2], user[0], user[3], user[4], user[5], user[1], user[6][1:-1].split(", "))
+
     while 1:
         print("1: select course\n"
               "2: check specific course information\n"
@@ -113,6 +118,25 @@ if temp == "s":
               "-1: if you want to exit the system just press -1\n")
         action = int(input("Enter a number for what you want to do: "))
         if action == 1:
+            # 显示所有课程
+            with open("../Course/all course") as f:
+                a = f.readlines()
+                for i, items in enumerate(a):
+                    a[i] = items.rstrip("\n").split(" | ")
+                for items in a:
+                    for i in items:
+                        print(i.ljust(15), end="\t")
+                    print("\n")
+            # 输入要选择的课程
+            course_name = input("enter the course name: ")
+            # 选课操作
+            with open("../Course/%s" % course_name, "r") as f:
+                a = f.readline()
+                c_info = a.split(" | ")
+                course_name = Course(c_info[0], c_info[1], c_info[2], c_info[3], c_info[4], c_info[5], c_info[6])
+                student.select_course(course_name)
+
+
             # 要把课程选出来然后创建实例然后进修修改再放回到文件里面去
             # 要把学生的文件里面改一下，主要是学分和选课方法之间的联系
             # 我这个bug真的太多了哎

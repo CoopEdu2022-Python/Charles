@@ -8,7 +8,7 @@ class Teacher:
 
     @staticmethod
     def check_stu(stu_id):   # 直接调文件
-        with open("../Student", "r") as f:
+        with open("../Students/format", "r") as f:
             for line in f.readlines():
                 a = line.split(" | ")
                 if a[0] == stu_id:
@@ -18,8 +18,9 @@ class Teacher:
 class Student:
     num = 0
 
-    def __init__(self, name: str, gender: str, age: str, grade: str, password: str, selected_course: list):
+    def __init__(self, name: str, stu_id: str, gender: str, age: str, grade: str, password: str, selected_course: list):
         self.name = name
+        self.stu_id = stu_id
         self.gender = gender
         self.age = age
         self.grade = grade
@@ -29,7 +30,7 @@ class Student:
 
     def select_course(self, course):
         self.selected_course.append(course)
-        course.student.append(self)
+        course.student.append("%s, %s | " % (self.name, self.stu_id))
 
     @staticmethod
     # 直接调文件
