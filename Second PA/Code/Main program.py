@@ -18,6 +18,21 @@ def enter_system(id_number: str, password: str):
             return "access denied(you can try again if you want hhhh)"
 
 
+def update_stu_info(student, id_number):
+    with open("../Students/%s" % id_number, "w") as f:
+        new_stu_info = "{} | {} | {} | {} | {} | {} | {} | {}" \
+            .format(student.stu_id, student.password, student.name, student.gender,
+                    student.age, student.grade, student.selected_course, student.credit_req)
+        f.write(new_stu_info)
+
+
+def update_course_info(course_name):
+    with open("../Course/%s" % course_name, "w") as f:
+        new_course_info = "{} | {} | {} | {} | {} | {} | {} | {}" \
+            .format(course_name.class_name, course_name.class_number, course_name.current_stu,
+                    course_name.stu_max, course_name.teacher, course_name.class_credit,
+                    course_name.class_type, course_name.class_credit)
+        f.write(new_course_info)
 
 # def iterate_password():
 #     global __account_number
@@ -104,12 +119,14 @@ if temp == "s":
 
     with open("../Students/%s" % id_number, "r") as f:
         a = f.readline()
-        a.split(" | ")
-        for items in a:
+        c = a.split(" | ")
+        for items in c:
             if items[0] == id_number:
                 user = items
-
-    student = Student(user[2], user[0], user[3], user[4], user[5], user[1], user[6][1:-1].split(", "))
+    with open("../Students/format", "r") as f:
+        b = f.read()
+        print(b, a, sep="\n")
+    student = Student(user[2], user[0], user[3], user[4], user[5], user[1], user[6][1:-1].split(", "), user[7])
 
     while 1:
         print("1: select course\n"
@@ -117,6 +134,7 @@ if temp == "s":
               "3: drop course"
               "-1: if you want to exit the system just press -1\n")
         action = int(input("Enter a number for what you want to do: "))
+        # 选课
         if action == 1:
             # 显示所有课程
             with open("../Course/all course") as f:
@@ -128,24 +146,37 @@ if temp == "s":
                         print(i.ljust(15), end="\t")
                     print("\n")
             # 输入要选择的课程
-            course_name = input("enter the course name: ")
+            course_name = input("enter the course name that you want to add: ")
             # 选课操作
             with open("../Course/%s" % course_name, "r") as f:
                 a = f.readline()
                 c_info = a.split(" | ")
                 course_name = Course(c_info[0], c_info[1], c_info[2], c_info[3], c_info[4], c_info[5], c_info[6])
-                student.select_course(course_name)
 
-
-            # 要把课程选出来然后创建实例然后进修修改再放回到文件里面去
-            # 要把学生的文件里面改一下，主要是学分和选课方法之间的联系
-            # 我这个bug真的太多了哎
-            pass
+            new_c_r = student.select_course(course_name)
+            # 更新学生信息
+            update_stu_info(student, id_number)
+            # 更新课程信息
+            update_course_info(course_name)
+        # 查看课程信息
         if action == 2:
-            pass
+            course_name = input("Which course you want to check in detailed")
+            student.check_course_info(course_name)
+        # 退课
         if action == 3:
-            pass
+            course_name = input("enter the course name that you want to drop: ")
 
+            with open("../Course/%s" % course_name, "r") as f:
+                a = f.readline()
+                c_info = a.split(" | ")
+                course_name = Course(c_info[0], c_info[1], c_info[2], c_info[3], c_info[4], c_info[5], c_info[6])
+
+            new_c_r = student.drop_course(course_name)
+
+            # 更新学生信息
+            update_stu_info(student, id_number)
+            # 更新课程信息
+            update_course_info(course_name)
 
 
 

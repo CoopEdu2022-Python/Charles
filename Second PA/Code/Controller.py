@@ -38,8 +38,7 @@ class Admin:
             f.write("{} | {} | {} | {} | {} | {} | {} | {}"
                     .format(name, class_number, len(students), stu_max, teacher, credit, category, students))
         with open("./all course", "w") as f:
-            f.write("{} | {} | {} | {} | {} | {} | {} | {}"
-                    .format(name, class_number, len(students), stu_max, teacher, credit, category, students))
+            f.write(name)
 
     @staticmethod
     # 修改课程信息，直接调文件修改，里面含有删改输入指令
@@ -63,12 +62,12 @@ class Admin:
                         new_info = items.split(": ")[1]
                         info[index] = new_info
                     info = " | ".join(info)
-                # 写文件，将第一步内存中国修改好的文件内容重新写入到这个文件中
+                # 写文件，将第一步内存中修改好的文件内容重新写入到这个文件中
                 with open(course_name, "w") as f_write:
                     f_write.write(info)
                     print("File has been changed")
                 # 第二遍读文件，验证是否已经修改
-                with open("Python", "r") as f_read2:
+                with open(course_name, "r") as f_read2:
                     info = f_read2.read().split(" | ")
                     return "0_course: {} | 1_class_code: {} | 2_current_stu_num: {} | 3_max_capacity: {} | " \
                            "4_teacher: {} | 5_credit: {} | 6_category: {} | 7_students: {}"\

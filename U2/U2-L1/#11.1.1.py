@@ -19,7 +19,7 @@ class Student():
 
 student_1 = Student("Charles", "20011041")
 print(student_1)
-student_1.courses = ["Math", "English", "Python", "Chinese", "Football"]
+student_1.courses = ["Math5002 ", "English", "Python", "Chinese", "Football"]
 print(len(student_1))
 del student_1
 
