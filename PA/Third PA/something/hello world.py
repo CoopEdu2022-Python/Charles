@@ -12,9 +12,13 @@ screen = pygame.display.set_mode(size)
 
 # 设置显示窗口的标题内容，str 类型
 pygame.display.set_caption('Hello world')
-white = 255, 255, 255
-myfont = pygame.font.Font(None, 70)
-textImage = myfont.render("HELLO WORLD", True, white)
+
+
+
+
+
+
+
 # 无限循环，直到 Python 运行时退出结束
 while True:
 
