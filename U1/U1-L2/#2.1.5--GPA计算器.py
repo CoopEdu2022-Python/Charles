@@ -1,6 +1,6 @@
 # 2.1.5 学生输入一个成绩，对不同的成绩进行评价（标准自定）
 # 这个标准是学校2021-2022handbook里面的，所以其实可以直接用到生活中hhhhhh
-GPA = int(input("Please enter your course score: "))
+GPA = float(input("Please enter your course score: "))
 if GPA >= 97:
     print("you've got an A+, and your GPA is 4.0, well done!!!")
 elif 93 <= GPA < 97:

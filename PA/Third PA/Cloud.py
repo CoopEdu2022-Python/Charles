@@ -1,9 +1,21 @@
-class Cloud:
-    def __init__(self):
-        pass
+import pygame
+import random
 
-    def draw(self):
-        pass
+
+class Cloud(pygame.sprite.Sprite):
+    def __init__(self, image):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = image
+        self.rect = self.image.get_rect()
+        self.rect.left, self.rect.bottom = (700, random.randint(50, 150))
+
+        self.speed = -3
 
     def update(self):
-        pass
+        self.rect.left += self.speed
+        if self.rect.right < 0:
+            self.kill()
+
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)

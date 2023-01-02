@@ -1,2 +1,2 @@
-with open("hi", "r+") as f:
-    pass
+import random
+print(random.sample([1, 5], 1))
