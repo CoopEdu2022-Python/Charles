@@ -82,16 +82,17 @@ while True:
             pygame.quit()
             sys.exit()
 
-        elif event.type == pygame.KEYDOWN:
-            if event.key in (pygame.K_SPACE, pygame.K_UP):
-                pygame.mixer.Sound('resources/audios/jump.mp3').play()
-                jump = 1
-            elif event.key == pygame.K_DOWN:
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_DOWN:
                 dino.duck()
             else:
                 dino.unduck()
         elif event.type == pygame.KEYUP:
             dino.unduck()
+        if event.type == pygame.KEYDOWN:
+            if event.key in (pygame.K_SPACE, pygame.K_UP):
+                pygame.mixer.Sound('resources/audios/jump.mp3').play()
+                jump = 1
 
     screen.fill(BACKGROUND_COLOR)
 
@@ -122,8 +123,10 @@ while True:
         dino.draw(screen)
 
     if jump == 1:
+        print(dino.status, "<-----------")
+        if dino.status == 2:
+            jump = 0
         dino.jump()
-        jump = 0
 
     pygame.display.update()
     clock.tick(FPS)

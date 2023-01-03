@@ -23,6 +23,8 @@ class Dinosaur(pygame.sprite.Sprite):
         self.rect.left, self.rect.bottom = (0.06 * self.x, self.y)
         self.mask = pygame.mask.from_surface(self.image)
         self.status = 2
+        self.g = 9.8
+        self.t = 0
 
         self.refresh_rate = 5
         self.refresh_counter = 0
@@ -47,20 +49,20 @@ class Dinosaur(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
 
     def update(self):
-        g = 9.8
-        t = 0
-        if self.status == 2 or 4:  # run
+        if self.status == 2 or self.status == 4:  # run
             if self.refresh_counter == self.refresh_rate:
                 self.refresh()
                 self.refresh_counter = 0
             self.refresh_counter += 1
         elif self.status == 1:  # jump
-            self.rect.bottom = self.y + (9.8 * t - 1 / 2 * g * (t ** 2))
-            if t < 2:
-                t += 0.1
-            elif t == 2:
+            self.rect.bottom = self.y - (98 * self.t - 1 / 2 * self.g * (self.t ** 2))
+            if self.t < 20:
+                self.t += 1
+            elif self.t == 20:
                 self.status = 2
+                self.t = 0
             self.refresh()
+            print(self.status)
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
