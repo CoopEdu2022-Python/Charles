@@ -1,2 +1,3 @@
 import random
-print(random.sample([1, 5], 1))
+y = 600
+print(type(random.sample([y, y-50, y-100], 1)))
