@@ -1,6 +1,7 @@
 import pygame
 import sys
 import random
+from data import *
 from Ground import *
 from Cloud import *
 from Cactus import *
@@ -8,15 +9,7 @@ from Ptera import *
 from Dinosaur import *
 
 
-def roots_for_quadratic_function(a, b, c):
-    return (-b + ((b ** 2 - (4 * a * c)) ** 0.5)) / (2 * a), (-b - ((b ** 2 - (4 * a * c)) ** 0.5)) / (2 * a)
-
-
 """Settings"""
-FPS = 60
-TITLE = 'Chrome Dino'
-BACKGROUND_COLOR = (235, 235, 235)
-SCREENSIZE = (1400, 600)
 pygame.init()
 screen = pygame.display.set_mode(SCREENSIZE)
 pygame.display.set_caption(TITLE)
@@ -27,7 +20,7 @@ ground_png = pygame.image.load("resources\images\ground\ground.png")
 ground = Ground(ground_png, SCREENSIZE)
 
 """Clouds"""
-cloud_png = pygame.image.load("cloud.png")
+cloud_png = pygame.image.load("resources/images/cloud/cloud.png")
 clouds = pygame.sprite.Group()
 
 """Cactus"""
@@ -58,7 +51,6 @@ dino_png = [pygame.image.load("resources\images\dinosaur\dinosaur-start.png"),
             pygame.image.load("resources\images\dinosaur\dinosaur-unknown-1.png")]
 dino = Dinosaur(dino_png, SCREENSIZE)
 dino_status = "still alive"
-x_1, x_2 = roots_for_quadratic_function(-0.5 * 9.8, 1, 600)
 
 
 i = 0
@@ -77,22 +69,21 @@ while True:
     if timer % a == 0:
         rand_num = random.randint(0, 30)
 
+
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_DOWN:
-                dino.duck()
-            else:
-                dino.unduck()
-        elif event.type == pygame.KEYUP:
-            dino.unduck()
-        if event.type == pygame.KEYDOWN:
             if event.key in (pygame.K_SPACE, pygame.K_UP):
                 pygame.mixer.Sound('resources/audios/jump.mp3').play()
-                jump = 1
+                dino.jump()
+            elif event.key == pygame.K_DOWN:
+                dino.duck()
+        elif event.type == pygame.KEYUP and dino.status == 4:
+            dino.unduck()
 
     screen.fill(BACKGROUND_COLOR)
 
@@ -122,13 +113,7 @@ while True:
         dino.update()
         dino.draw(screen)
 
-    if jump == 1:
-        print(dino.status, "<-----------")
-        if dino.status == 2:
-            jump = 0
-        dino.jump()
-
     pygame.display.update()
     clock.tick(FPS)
     timer += 1
-
+    # print(dino.status, "<-----------")

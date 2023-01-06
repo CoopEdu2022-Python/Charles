@@ -1,4 +1,5 @@
 import pygame
+from data import *
 
 
 class Dinosaur(pygame.sprite.Sprite):
@@ -23,10 +24,13 @@ class Dinosaur(pygame.sprite.Sprite):
         self.rect.left, self.rect.bottom = (0.06 * self.x, self.y)
         self.mask = pygame.mask.from_surface(self.image)
         self.status = 2
-        self.g = 9.8
-        self.t = 0
+        self.g = GRAVITY
+        self.t = TIME_t
+        self.x1 = START_x1
+        self.x2 = START_x2
+        self.t_max = self.x2
 
-        self.refresh_rate = 5
+        self.refresh_rate = REFRESHING_RATE // 2
         self.refresh_counter = 0
 
     def jump(self):
@@ -55,14 +59,14 @@ class Dinosaur(pygame.sprite.Sprite):
                 self.refresh_counter = 0
             self.refresh_counter += 1
         elif self.status == 1:  # jump
-            self.rect.bottom = self.y - (98 * self.t - 1 / 2 * self.g * (self.t ** 2))
-            if self.t < 20:
-                self.t += 1
-            elif self.t == 20:
+            # self.rect.bottom = self.y - (98 * self.t - 1 / 2 * self.g * (self.t ** 2))
+            self.rect.bottom = self.y + self.g * (self.t - self.x1) * (self.t - self.x2)
+            if self.t < self.t_max:
+                self.t += INCREASING_RATE_t
+            elif self.t == self.t_max:
                 self.status = 2
                 self.t = 0
             self.refresh()
-            print(self.status)
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)

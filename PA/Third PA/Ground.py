@@ -1,4 +1,5 @@
 import pygame
+from data import *
 
 
 class Ground(pygame.sprite.Sprite):
@@ -17,7 +18,7 @@ class Ground(pygame.sprite.Sprite):
         self.rect_1.left, self.rect_1.bottom = self.rect_0.right, self.rect_0.bottom
 
         # pixels move each frame
-        self.speed = -5
+        self.speed = MOVING_SPEED
 
     # calculate position
     def update(self):

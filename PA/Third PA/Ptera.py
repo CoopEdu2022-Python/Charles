@@ -1,7 +1,8 @@
 import pygame
 import random
+from data import *
 
-
+v = MOVING_SPEED
 class Ptera(pygame.sprite.Sprite):
     def __init__(self, images, screen_size):
         pygame.sprite.Sprite.__init__(self)
@@ -14,9 +15,9 @@ class Ptera(pygame.sprite.Sprite):
 
         self.mask = pygame.mask.from_surface(self.image)  # create mask for collied detection
 
-        self.speed = random.sample([-4, -5, -6], 1)[0]
+        self.speed = random.sample([v + 1, v, v - 1], 1)[0]
 
-        self.refresh_rate = 10
+        self.refresh_rate = REFRESHING_RATE
         self.refresh_counter = 0
 
     def refresh(self):
@@ -30,12 +31,12 @@ class Ptera(pygame.sprite.Sprite):
         """define how fast the ptera flip its wings"""
         if self.refresh_counter == self.refresh_rate:
             self.refresh()  # refresh the movement
-            if self.speed == -4:
-                self.refresh_counter = -5
-            elif self.speed == -5:
+            if self.speed == v + 1:
+                self.refresh_counter = -(REFRESHING_RATE * 0.5)
+            elif self.speed == v:
                 self.refresh_counter = 0
-            elif self.speed == -6:
-                self.refresh_counter = 5
+            elif self.speed == v - 1:
+                self.refresh_counter = REFRESHING_RATE * 0.5
         self.refresh_counter += 1
 
         """if out, delete"""

@@ -1,4 +1,5 @@
 import pygame
+from data import *
 
 
 class Cactus(pygame.sprite.Sprite):
@@ -11,7 +12,7 @@ class Cactus(pygame.sprite.Sprite):
 
         self.mask = pygame.mask.from_surface(self.image)
 
-        self.speed = -5
+        self.speed = MOVING_SPEED
 
     def update(self):
         self.rect.left += self.speed
