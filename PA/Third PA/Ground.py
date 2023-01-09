@@ -7,11 +7,11 @@ class Ground(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         # two same pictures
-        x = screen_size[1]
+        y = screen_size[1]
         self.image_0 = image
         self.rect_0 = self.image_0.get_rect()
         # make sure the ground will always stick at the bottom of the screen
-        self.rect_0.left, self.rect_0.bottom = (0, x)
+        self.rect_0.left, self.rect_0.bottom = (0, y)
 
         self.image_1 = image
         self.rect_1 = self.image_1.get_rect()
@@ -30,5 +30,9 @@ class Ground(pygame.sprite.Sprite):
 
     # draw to screen
     def draw(self, screen):
+        screen.blit(self.image_0, self.rect_0)
+        screen.blit(self.image_1, self.rect_1)
+
+    def start(self, screen):
         screen.blit(self.image_0, self.rect_0)
         screen.blit(self.image_1, self.rect_1)

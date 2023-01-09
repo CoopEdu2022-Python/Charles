@@ -7,11 +7,11 @@ class Cloud(pygame.sprite.Sprite):
     def __init__(self, image, screen_size):
         pygame.sprite.Sprite.__init__(self)
 
-        x, y = screen_size[0], screen_size[1]
+        self.x, self.y = screen_size[0], screen_size[1]
         self.image = image
         self.rect = self.image.get_rect()
         # set the relationship between the position of the cloud and the screen size
-        self.rect.left, self.rect.bottom = (x, random.randint(y // 6, y // 5))
+        self.rect.left, self.rect.bottom = (self.x, random.randint(self.y // 6, self.y // 5))
 
         self.speed = MOVING_SPEED * 0.3
 
@@ -22,3 +22,7 @@ class Cloud(pygame.sprite.Sprite):
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
+
+    # def start(self, screen):
+    #     self.rect.left, self.rect.bottom = (1300, random.randint(self.y // 6, self.y // 5))
+    #     screen.blit(self.image, self.rect)

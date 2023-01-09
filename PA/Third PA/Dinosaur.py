@@ -21,9 +21,10 @@ class Dinosaur(pygame.sprite.Sprite):
         self.images = images
         self.image = self.images[0]  # start position for the dinosaur
         self.rect = self.image.get_rect()
-        self.rect.left, self.rect.bottom = (0.06 * self.x, self.y)
+        self.rect.left, self.rect.bottom = (0.06 * self.x + 3, self.y)
         self.mask = pygame.mask.from_surface(self.image)
         self.status = 2
+
         self.g = GRAVITY
         self.t = TIME_t
         self.x1 = START_x1
@@ -50,6 +51,11 @@ class Dinosaur(pygame.sprite.Sprite):
             self.image = self.images[self.status + 1]
         else:
             self.image = self.images[self.status]
+
+        if self.status == 6:
+            self.image = self.images[6]
+        elif self.status == 7:
+            self.image = self.images[7]
         self.mask = pygame.mask.from_surface(self.image)
 
     def update(self):
@@ -58,8 +64,8 @@ class Dinosaur(pygame.sprite.Sprite):
                 self.refresh()
                 self.refresh_counter = 0
             self.refresh_counter += 1
+
         elif self.status == 1:  # jump
-            # self.rect.bottom = self.y - (98 * self.t - 1 / 2 * self.g * (self.t ** 2))
             self.rect.bottom = self.y + self.g * (self.t - self.x1) * (self.t - self.x2)
             if self.t < self.t_max:
                 self.t += INCREASING_RATE_t
@@ -67,6 +73,20 @@ class Dinosaur(pygame.sprite.Sprite):
                 self.status = 2
                 self.t = 0
             self.refresh()
+            print(self.rect.bottom)
+
+    # def speed_down(self):
+    #     self.t = 1
+    #     self.rect.bottom -= (-2 * self.t)
+    #     print(self.rect.bottom, "!!!!!!!!!!")
+    #     if self.rect.bottom < self.y + 2:
+    #         print(1)
+    #         self.t += INCREASING_RATE_t
+    #     elif self.y + (2 * self.t) >= self.y + 2:
+    #         self.rect.bottom = self.y + 2
+    #         self.t = 0
+    #     self.refresh()
+    #     print(self.rect.bottom, "?????????")
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
@@ -76,3 +96,9 @@ class Dinosaur(pygame.sprite.Sprite):
             self.status = 6
         else:
             self.status = 7
+        self.refresh()
+
+    def start(self, screen):
+        self.rect.bottom = self.y + 2
+        screen.blit(self.image, self.rect)
+        # self.rect.bottom = self.y
