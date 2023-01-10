@@ -8,4 +8,4 @@ FPS = 60
 TITLE = 'Chrome Dino'
 BACKGROUND_COLOR = (235, 235, 235)
 SCREENSIZE = (1400, 600)
-REFRESHING_RATE = 10
+REFRESHING_RATE = 10  # the higher the number, the slower the refreshing rate

@@ -1,6 +1,6 @@
 import pygame
 import random
-from data import *
+from config import *
 
 
 class Ptera(pygame.sprite.Sprite):

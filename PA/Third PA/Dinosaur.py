@@ -1,5 +1,5 @@
 import pygame
-from data import *
+from config import *
 
 
 class Dinosaur(pygame.sprite.Sprite):
@@ -34,6 +34,11 @@ class Dinosaur(pygame.sprite.Sprite):
         self.refresh_rate = REFRESHING_RATE // 2
         self.refresh_counter = 0
 
+    def start(self, screen):
+        self.rect.bottom = self.y + 2
+        screen.blit(self.image, self.rect)
+        # self.rect.bottom = self.y
+
     def jump(self):
         self.status = 1
 
@@ -43,9 +48,23 @@ class Dinosaur(pygame.sprite.Sprite):
     def unduck(self):
         self.status = 2
 
+    def speed_down(self):
+        self.status = -2
+        self.update()
+
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
+
+    def die(self, DIN):
+        if DIN == "day":
+            self.status = 6
+        else:
+            self.status = 7
+        self.refresh()
+
     def refresh(self):
-        if self.status == 1:  # only show one picture when dino jump
-            self.image = self.images[self.status]
+        if self.status == 1 or self.status == -2:  # only show one picture when dino jump and speed fall
+            self.image = self.images[1]
             pass
         elif self.image == self.images[self.status]:
             self.image = self.images[self.status + 1]
@@ -56,10 +75,24 @@ class Dinosaur(pygame.sprite.Sprite):
             self.image = self.images[6]
         elif self.status == 7:
             self.image = self.images[7]
+
+        """
+        This function as the outer shell of the collision mask
+        It's cool but I don't understand how it works, it just worked~
+        """
+        if self.status == 4:
+            width = int(self.image.get_size()[0] * 0.7)
+            height = self.image.get_size()[1]
+            image = pygame.transform.scale(self.image, (width, height))
+            self.mask = pygame.mask.from_surface(image)
+            return
         self.mask = pygame.mask.from_surface(self.image)
 
     def update(self):
-        if self.status == 2 or self.status == 4:  # run
+        # print(self.rect.bottom)
+        pass
+        """normal run & jump"""
+        if self.status == 2 or self.status == 4:  # run during day and night
             if self.refresh_counter == self.refresh_rate:
                 self.refresh()
                 self.refresh_counter = 0
@@ -73,32 +106,20 @@ class Dinosaur(pygame.sprite.Sprite):
                 self.status = 2
                 self.t = 0
             self.refresh()
-            print(self.rect.bottom)
+            # print(self.rect.bottom)
 
-    # def speed_down(self):
-    #     self.t = 1
-    #     self.rect.bottom -= (-2 * self.t)
-    #     print(self.rect.bottom, "!!!!!!!!!!")
-    #     if self.rect.bottom < self.y + 2:
-    #         print(1)
-    #         self.t += INCREASING_RATE_t
-    #     elif self.y + (2 * self.t) >= self.y + 2:
-    #         self.rect.bottom = self.y + 2
-    #         self.t = 0
-    #     self.refresh()
-    #     print(self.rect.bottom, "?????????")
+        """speed fall"""
+        if self.status == -2:
+            if self.rect.bottom != self.y:
+                self.rect.bottom -= (-4 * self.t)
+                # print(self.rect.bottom, "!!!!!!!!!!")
+                if self.rect.bottom < self.y:
+                    self.t += INCREASING_RATE_t
+                elif self.rect.bottom + (4 * self.t) >= self.y:
+                    self.rect.bottom = self.y
+                    self.t = 0
+                    self.status = 4  # automatically duck after speed down
+                self.refresh()
+                # print(self.rect.bottom, "?????????")
 
-    def draw(self, screen):
-        screen.blit(self.image, self.rect)
 
-    def die(self, DIN):
-        if DIN == "day":
-            self.status = 6
-        else:
-            self.status = 7
-        self.refresh()
-
-    def start(self, screen):
-        self.rect.bottom = self.y + 2
-        screen.blit(self.image, self.rect)
-        # self.rect.bottom = self.y
