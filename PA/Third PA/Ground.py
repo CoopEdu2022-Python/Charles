@@ -19,6 +19,10 @@ class Ground(pygame.sprite.Sprite):
 
         # pixels move each frame
         self.speed = MOVING_SPEED
+        self.new_speed = self.speed
+
+    def speed_up(self):
+        self.new_speed *= 1.3
 
     # calculate position
     def update(self):
@@ -27,6 +31,11 @@ class Ground(pygame.sprite.Sprite):
         if self.rect_0.right < 0:
             self.rect_0.left = self.rect_1.right
             self.rect_0, self.rect_1 = self.rect_1, self.rect_0  # stick two picture together
+
+        """increase the speed"""
+        if self.speed != self.new_speed:
+            self.speed -= 0.01
+
 
     # draw to screen
     def draw(self, screen):

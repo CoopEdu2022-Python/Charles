@@ -35,7 +35,7 @@ class Dinosaur(pygame.sprite.Sprite):
         self.refresh_counter = 0
 
     def start(self, screen):
-        self.rect.bottom = self.y + 2
+        self.rect.bottom = self.y
         screen.blit(self.image, self.rect)
         # self.rect.bottom = self.y
 
@@ -48,7 +48,7 @@ class Dinosaur(pygame.sprite.Sprite):
     def unduck(self):
         self.status = 2
 
-    def speed_down(self):
+    def speed_fall(self):
         self.status = -2
         self.update()
 

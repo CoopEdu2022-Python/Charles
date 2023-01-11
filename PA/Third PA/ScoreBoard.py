@@ -27,20 +27,28 @@ class Scoreboard(pygame.sprite.Sprite):
         self.refresh_rate = REFRESHING_RATE / 2
         self.refresh_count = 0
 
-    def update(self, current_score, first_time):
-        self.score = int(current_score)
-        # stitch current score image
+    def flick(self, current_score):
+        self.score = int(current_score // 100 * 100)
         self.image_score.fill((235, 235, 235))
+        if current_score % 100 < 5 or 10 <= current_score % 100 < 15:
+            # print(1)
+            self.image_score.set_alpha(0)
+        else:
+            self.image_score.set_alpha(235)
+            # print(current_score)
         for i, _ in enumerate(str(self.score).zfill(5)):  # current score images
             self.image_score.blit(self.images[int(_)], (20 * i, 0))
 
-        if self.score % 100 < 20 and self.score // 100 >= 1:
+    def update(self, current_score, first_time):
+        if current_score % 100 <= 20 and current_score > 100:
+            self.flick(current_score)
+        else:
+            # stitch current score image
+            self.score = int(current_score)
+            self.image_score.fill((235, 235, 235))
 
-            if self.refresh_count == self.refresh_rate:
-                print(1111111111111)
-                self.image_score.set_alpha(255)
-                self.refresh_count = 0
-            self.refresh_count += 1
+            for i, _ in enumerate(str(self.score).zfill(5)):  # current score images
+                self.image_score.blit(self.images[int(_)], (20 * i, 0))
 
         # stitch high score image
         self.image_high_score.fill((235, 235, 235))

@@ -11,5 +11,6 @@ def big_add(num1, num2):
     sum_final = str(int(num1) + int(num2))
     # 有小数点时添加小数点
     if n > 0:
+        sum_final = sum_final.zfill(n + 1 + (sum_final[0] == '-'))
         sum_final = sum_final[:-n] + "." + sum_final[-n:]
     return sum_final

@@ -1,4 +1,5 @@
 import pygame
+from pygame import locals
 import sys
 import random
 from config import *
@@ -9,12 +10,15 @@ from Ptera import *
 from Dinosaur import *
 from ScoreBoard import *
 from end import *
+from Trick import *
 
 """Settings"""
 pygame.init()
 screen = pygame.display.set_mode(SCREENSIZE)
 pygame.display.set_caption(TITLE)
 clock = pygame.time.Clock()
+pygame.mixer.music.load('resources/audios/trick audio/Lipps Inc_ - Funkytown (12_ Version).ogg')
+pygame.mixer.music.play(0, 20)
 
 """Ground"""
 ground_png = pygame.image.load("resources\images\ground\ground.png")
@@ -32,7 +36,7 @@ cactus_png = [pygame.image.load("resources\images\cactus\cactus-1.png"),
               pygame.image.load("resources\images\cactus\cactus-5.png"),
               pygame.image.load("resources\images\cactus\cactus-6.png")]
 cactus = pygame.sprite.Group()
-a = 120
+a = random.randint(90, 120)
 rand_num = random.randint(0, 60)
 
 """Ptera"""
@@ -101,6 +105,7 @@ while i == 0:
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key in (pygame.K_SPACE, pygame.K_UP):
+                pygame.mixer.Sound('resources/audios/trick audio/wuhu_jump.mp3').play()
                 dino.jump()
                 i = 1
                 break
@@ -111,7 +116,7 @@ while 1:
     """main"""
     timer = 0
     while dino.status != 6 or 7:
-        current_score = timer // 6
+        current_score = (timer // 6)
         if timer % a == 0:
             rand_num = random.randint(0, 30)
 
@@ -125,11 +130,12 @@ while 1:
             Key_pressed = pygame.key.get_pressed()  # this is something I searched online to realize the long press
             if (Key_pressed[pygame.K_SPACE] or Key_pressed[pygame.K_UP]) and dino.rect.bottom == dino.y:
                 pygame.mixer.Sound('resources/audios/jump.mp3').play()
+                # pygame.mixer.Sound('resources/audios/trick audio/wuhu_jump.mp3').play()
                 dino.jump()
 
             if Key_pressed[pygame.K_DOWN] and dino.rect.bottom != dino.y:  # duck while not touching the ground
                 dino.t = 1  # reset the timer that calculates the movement of dino
-                dino.speed_down()
+                dino.speed_fall()
             elif Key_pressed[pygame.K_DOWN]:
                 dino.duck()
 
@@ -161,20 +167,27 @@ while 1:
 
         score_board.update(current_score, first)
         score_board.draw(screen)
-        if current_score // 200 == 0 and current_score < 1000:
-            MOVING_SPEED *= 3
-            current_score *= 1.3
+        if current_score % 100 == 0 and current_score != 0:
+            # pygame.mixer.Sound('resources/audios/score.mp3').play()
+            pygame.mixer.Sound('resources/audios/trick audio/nice.mp3').play()
+        # if current_score % 200 == 0 and current_score < 1000 and current_score != 0:
+        #     for _ in list(cactus) + list(ptera) + [ground]:
+        #         _.speed_up()
+        #     current_score *= 3
 
         """collide detection"""
         for _ in ptera:
             if pygame.sprite.collide_mask(dino, _):
                 dino.die("day")  # self.status = 'die'
+                pygame.mixer.Sound('resources/audios/die.mp3').play()
                 break
         for _ in cactus:
             if pygame.sprite.collide_mask(dino, _):
                 dino.die("day")  # self.status = 'die'
+                pygame.mixer.Sound('resources/audios/die.mp3').play()
                 break
 
+        """death penalty"""
         # print(dino.status)
         if dino.status != 6 and 7:
             """main character: dino"""
@@ -197,6 +210,7 @@ while 1:
     while i == 1:
 
         """ending fiction"""
+        pygame.mixer.music.fadeout(60)
         end.update()
         end.draw(screen)
 
@@ -211,9 +225,16 @@ while 1:
                 pygame.quit()
                 sys.exit()
 
+            trick = random.sample((1, 1, 1, 1, 1, 1, 1, 0, 0, 0), 1)
+            if trick[0] == 0:
+                trick_video()
+
             """restart the game"""
             if event.type == pygame.KEYDOWN:
                 if event.key in (pygame.K_SPACE, pygame.K_UP):
+                    pygame.mixer.Sound('resources/audios/trick audio/wuhu_jump.mp3').play()
+                    pygame.mixer.music.load('resources/audios/trick audio/Lipps Inc_ - Funkytown (12_ Version).ogg')
+                    pygame.mixer.music.play(0, 20)
                     dino.jump()
                     for _ in cactus:
                         _.kill()

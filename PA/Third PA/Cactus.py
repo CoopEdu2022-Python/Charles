@@ -13,11 +13,19 @@ class Cactus(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
 
         self.speed = MOVING_SPEED
+        self.new_speed = self.speed
+
+    def speed_up(self):
+        self.new_speed *= 1.3
 
     def update(self):
         self.rect.left += self.speed
         if self.rect.right < 0:
             self.kill()
+
+        if self.speed != self.new_speed:
+            self.speed -= 0.01
+
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
