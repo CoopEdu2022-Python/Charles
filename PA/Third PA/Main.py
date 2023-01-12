@@ -129,8 +129,8 @@ while 1:
             """keyboard enter capture"""
             Key_pressed = pygame.key.get_pressed()  # this is something I searched online to realize the long press
             if (Key_pressed[pygame.K_SPACE] or Key_pressed[pygame.K_UP]) and dino.rect.bottom == dino.y:
-                pygame.mixer.Sound('resources/audios/jump.mp3').play()
-                # pygame.mixer.Sound('resources/audios/trick audio/wuhu_jump.mp3').play()
+                # pygame.mixer.Sound('resources/audios/jump.mp3').play()
+                pygame.mixer.Sound('resources/audios/trick audio/wuhu_jump.mp3').play()
                 dino.jump()
 
             if Key_pressed[pygame.K_DOWN] and dino.rect.bottom != dino.y:  # duck while not touching the ground
@@ -170,10 +170,11 @@ while 1:
         if current_score % 100 == 0 and current_score != 0:
             # pygame.mixer.Sound('resources/audios/score.mp3').play()
             pygame.mixer.Sound('resources/audios/trick audio/nice.mp3').play()
-        # if current_score % 200 == 0 and current_score < 1000 and current_score != 0:
+        # if current_score % 20 == 0 and current_score < 100 and current_score != 0:
         #     for _ in list(cactus) + list(ptera) + [ground]:
         #         _.speed_up()
-        #     current_score *= 3
+        #     MOVING_SPEED -= 1
+            # current_score *= 3
 
         """collide detection"""
         for _ in ptera:

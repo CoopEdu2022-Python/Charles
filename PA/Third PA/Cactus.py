@@ -16,15 +16,15 @@ class Cactus(pygame.sprite.Sprite):
         self.new_speed = self.speed
 
     def speed_up(self):
-        self.new_speed *= 1.3
+        self.speed -= 1
 
     def update(self):
         self.rect.left += self.speed
         if self.rect.right < 0:
             self.kill()
-
-        if self.speed != self.new_speed:
-            self.speed -= 0.01
+        #
+        # if self.speed >= self.new_speed:
+        #     self.speed -= 0.01
 
 
     def draw(self, screen):

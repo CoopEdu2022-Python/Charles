@@ -26,7 +26,7 @@ class Ptera(pygame.sprite.Sprite):
         self.new_speed = self.v
 
     def speed_up(self):
-        self.speed *= 1.3
+        self.v -= 1
 
     def refresh(self):
         if self.image == self.images[0]:
@@ -47,8 +47,8 @@ class Ptera(pygame.sprite.Sprite):
                 self.refresh_counter = -(REFRESHING_RATE * 0.5)  # the wings will flap slower
         self.refresh_counter += 1
 
-        if self.v != self.new_speed:
-            self.v -= 0.01
+        # if self.v != self.new_speed:
+        #     self.v -= 0.01
 
 
         """if out, delete"""
