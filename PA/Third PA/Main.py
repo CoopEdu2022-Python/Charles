@@ -226,13 +226,12 @@ while 1:
                 pygame.quit()
                 sys.exit()
 
-            trick = random.sample((1, 1, 1, 1, 1, 1, 1, 0, 0, 0), 1)
-            if trick[0] == 0:
-                trick_video()
-
             """restart the game"""
             if event.type == pygame.KEYDOWN:
                 if event.key in (pygame.K_SPACE, pygame.K_UP):
+                    trick = random.sample((1, 1, 1, 1, 1, 1, 1, 0, 0, 0), 1)
+                    if trick[0] == 0:
+                        trick_video()
                     pygame.mixer.Sound('resources/audios/trick audio/wuhu_jump.mp3').play()
                     pygame.mixer.music.load('resources/audios/trick audio/Lipps Inc_ - Funkytown (12_ Version).ogg')
                     pygame.mixer.music.play(0, 20)
